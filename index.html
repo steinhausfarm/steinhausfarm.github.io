@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Steinhaus Farm – Mecklenburg, New York</title>
+<meta name="description" content="Steinhaus Farm in Mecklenburg, New York — small-batch maple syrup made by hand, and vegetables from a family farm in the Finger Lakes." />
+<link rel="icon" href="logo.jpg" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet" />
+
+<style>
+:root{
+  --bg:#FFFFFF; --bg-alt:#F6F6F3;
+  --ink:#1B1B1B; --ink-soft:#6A6A6A; --head:#4A4A4A;
+  --line:#E4E4E0;
+  --accent:#B52848; --accent-2:#F89B70; --plum:#954570; --amber:#BF863F;
+  --sans:'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --serif:'Fraunces', Georgia, serif;
+  --maxw:1080px;
+}
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{ margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
+  font-size:18px; line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
+img{ max-width:100%; display:block; }
+a{ color:var(--accent); text-underline-offset:3px; text-decoration-thickness:1px; }
+a:hover{ color:#8C1B36; }
+.wrap{ width:100%; max-width:var(--maxw); margin:0 auto; padding:0 28px; }
+.rule{ height:1px; background:var(--line); max-width:var(--maxw); margin:0 auto; }
+.eyebrow{ font-size:.72rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+  color:var(--ink-soft); display:inline-flex; align-items:center; gap:.7em; margin:0 0 1.1rem; }
+.eyebrow::before{ content:""; width:1.7em; height:2px; background:var(--accent); display:inline-block; }
+h1,h2,h3{ font-family:var(--sans); font-weight:500; color:var(--head); line-height:1.06; letter-spacing:-.02em; margin:0; }
+
+/* ---------- HEADER ---------- */
+header{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,.9);
+  backdrop-filter:blur(8px); border-bottom:1px solid var(--line); }
+.bar{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+.brand{ display:flex; align-items:center; gap:.6rem; font-weight:600; font-size:1.05rem;
+  letter-spacing:-.02em; color:var(--head); text-decoration:none; }
+.brand img{ height:40px; width:auto; }
+.brand span{ color:var(--accent); }
+nav ul{ list-style:none; display:flex; gap:1.6rem; margin:0; padding:0; }
+nav a{ font-size:.74rem; font-weight:600; letter-spacing:.06em; color:var(--ink-soft);
+  text-decoration:none; text-transform:uppercase; padding:.4rem 0; position:relative; }
+nav a::after{ content:""; position:absolute; left:0; bottom:.1rem; width:0; height:1.5px; background:var(--ink); transition:width .25s ease; }
+nav a:hover{ color:var(--ink); } nav a:hover::after{ width:100%; }
+.menu-btn{ display:none; background:none; border:1px solid var(--line); border-radius:6px;
+  padding:.5rem .7rem; color:var(--ink); font-weight:600; font-size:.72rem;
+  letter-spacing:.06em; text-transform:uppercase; cursor:pointer; }
+@media (max-width:820px){
+  nav{ position:absolute; top:64px; left:0; right:0; background:var(--bg); border-bottom:1px solid var(--line); transform:translateY(-135%); transition:transform .3s ease; }
+  nav.open{ transform:translateY(0); box-shadow:0 14px 30px rgba(0,0,0,.08); }
+  nav ul{ flex-direction:column; gap:0; padding:.5rem 28px 1.1rem; }
+  nav li{ border-top:1px solid var(--line); }
+  nav a{ display:block; padding:.9rem 0; font-size:.82rem; }
+  .menu-btn{ display:inline-block; }
+}
+
+/* ---------- FIXED HERO (scroll-over effect) ---------- */
+.hero-fixed{
+  position:fixed; top:0; left:0; width:100%; height:100vh;
+  background:#2b2b2b url("hero.jpg") center 42% / cover no-repeat;
+  display:flex; align-items:center; justify-content:center; text-align:center; z-index:0;
+}
+.hero-fixed::after{ content:""; position:absolute; inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,.18), rgba(0,0,0,.28) 55%, rgba(0,0,0,.42)); }
+.hero-inner{ position:relative; z-index:1; color:#fff; padding:0 24px; }
+.hero-inner h1{ color:#fff; font-weight:400; font-size:clamp(3rem,9vw,6.2rem);
+  letter-spacing:-.02em; text-shadow:0 2px 30px rgba(0,0,0,.35); }
+.hero-sub{ font-size:clamp(1.1rem,3vw,1.7rem); font-weight:300; margin:.7rem 0 0;
+  letter-spacing:.01em; text-shadow:0 2px 20px rgba(0,0,0,.45); }
+.scroll-hint{ position:fixed; bottom:26px; left:50%; transform:translateX(-50%); z-index:1;
+  color:#fff; font-size:.68rem; letter-spacing:.2em; text-transform:uppercase; opacity:.85;
+  animation:bob 2.2s ease-in-out infinite; }
+@keyframes bob{ 0%,100%{ transform:translateX(-50%) translateY(0);} 50%{ transform:translateX(-50%) translateY(6px);} }
+
+/* content sheet that slides up over the hero */
+.page{ position:relative; z-index:1; margin-top:100vh; background:var(--bg); }
+
+section{ padding:70px 0; }
+.sec-head{ max-width:60ch; margin:0 0 44px; }
+.sec-head h2{ font-size:clamp(2rem, 5vw, 3rem); }
+.sec-head p{ color:var(--ink-soft); font-size:1.08rem; margin:1.1rem 0 0; }
+
+/* welcome */
+.welcome{ padding-top:76px; }
+.welcome .pron{ font-size:.95rem; color:var(--ink-soft); margin:0 0 1.4rem; }
+.welcome .pron b{ color:var(--accent); font-weight:600; }
+.welcome .lede{ font-size:clamp(1.3rem,2.6vw,1.7rem); color:var(--head); font-weight:400;
+  line-height:1.4; max-width:24ch; }
+.welcome .lede.sub{ font-size:1.12rem; color:var(--ink-soft); max-width:52ch; margin-top:1.4rem; line-height:1.6; }
+
+/* who */
+.who-intro{ display:grid; grid-template-columns:1fr .8fr; gap:48px; align-items:center; margin-bottom:56px; }
+.who-intro .frame{ max-width:380px; }
+.who-intro p{ margin:0 0 1rem; font-size:1.12rem; }
+.frame{ margin:0; }
+.frame img{ width:100%; border-radius:3px; border:1px solid var(--line); box-shadow:0 14px 30px -20px rgba(0,0,0,.28); }
+.frame figcaption{ font-size:.7rem; color:var(--ink-soft); letter-spacing:.04em; margin-top:.7rem; text-transform:uppercase; text-align:right; }
+.people{ display:grid; grid-template-columns:repeat(4,1fr); gap:26px; }
+.person img{ width:100%; aspect-ratio:3/4; object-fit:cover; border-radius:3px; border:1px solid var(--line); box-shadow:0 12px 26px -20px rgba(0,0,0,.3); }
+.person h3{ font-size:1.15rem; margin:1.2rem 0 .2rem; }
+.person .role{ font-size:.66rem; font-weight:700; text-transform:uppercase; letter-spacing:.07em; color:var(--accent); margin:0 0 .7rem; }
+.person p{ color:var(--ink-soft); font-size:.88rem; margin:0; }
+@media (max-width:760px){ .who-intro{ grid-template-columns:1fr; gap:28px; } .people{ grid-template-columns:1fr; gap:48px; } }
+
+/* stay */
+.stay-grid{ display:grid; grid-template-columns:1.1fr .9fr; gap:46px; align-items:center; }
+@media (max-width:760px){ .stay-grid{ grid-template-columns:1fr; gap:28px; } }
+.btn{ display:inline-block; font-weight:600; font-size:.78rem; letter-spacing:.07em; text-transform:uppercase;
+  background:var(--ink); color:#fff; text-decoration:none; padding:.9rem 1.6rem; border-radius:4px; transition:background .2s ease; }
+.btn:hover{ background:#000; color:#fff; }
+
+/* produce */
+#produce{ background:var(--bg-alt); }
+.product{ display:grid; grid-template-columns:.9fr 1.1fr; gap:46px; align-items:center; padding:46px 0; border-top:1px solid var(--line); }
+.product:first-of-type{ border-top:none; }
+.product.flip .p-media{ order:2; }
+.product img{ width:100%; border-radius:3px; border:1px solid var(--line); box-shadow:0 14px 30px -20px rgba(0,0,0,.28); }
+.product h3{ font-size:1.9rem; margin:0 0 .9rem; }
+.product p{ color:var(--ink-soft); margin:0 0 1rem; }
+.price{ font-size:.95rem; color:var(--ink); display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; margin:0 0 1.1rem; }
+.price b{ color:var(--accent); font-weight:700; }
+.buy{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); margin:1.3rem 0 .5rem; }
+.buy-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:.4rem; }
+.buy-list li{ font-size:.98rem; }
+@media (max-width:760px){ .product, .product.flip{ grid-template-columns:1fr; gap:24px; padding:40px 0; } .product.flip .p-media{ order:0; } }
+
+/* testimonials */
+.quotes{ display:grid; grid-template-columns:1fr 1fr; gap:30px; }
+blockquote{ margin:0; background:var(--bg); border:1px solid var(--line); border-radius:3px; padding:30px 32px; }
+blockquote p{ font-family:var(--serif); font-style:italic; font-size:1.16rem; line-height:1.5; color:var(--ink); margin:0 0 1rem; }
+blockquote cite{ font-family:var(--sans); font-style:normal; font-size:.72rem; font-weight:700; letter-spacing:.05em; color:var(--ink-soft); text-transform:uppercase; }
+@media (max-width:760px){ .quotes{ grid-template-columns:1fr; } }
+
+/* photos / instagram */
+.ig-slot{ background:var(--bg-alt); border:1px dashed var(--line); border-radius:4px; padding:48px 28px; text-align:center; }
+.ig-slot .mark{ font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-soft); }
+.ig-slot p{ color:var(--ink-soft); max-width:46ch; margin:1rem auto 1.6rem; }
+
+/* contact */
+#contact{ border-top:1px solid var(--line); }
+.contact-card{ font-size:1.18rem; line-height:1.9; margin-top:1.4rem; }
+.contact-card .name{ font-weight:500; color:var(--head); font-size:1.5rem; letter-spacing:-.02em; display:block; margin-bottom:.4rem; }
+
+footer{ padding:30px 0 44px; font-size:.72rem; letter-spacing:.03em; color:var(--ink-soft); }
+footer .wrap{ display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap; border-top:1px solid var(--line); padding-top:26px; }
+
+.reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.in{ opacity:1; transform:none; }
+@media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } .reveal{ opacity:1; transform:none; transition:none; } .scroll-hint{ animation:none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="#top"><img src="logo.jpg" alt="" /> Steinhaus <span>Farm</span></a>
+    <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav">
+      <ul>
+        <li><a href="#top">Welcome</a></li>
+        <li><a href="#who">Who we are</a></li>
+        <li><a href="#stay">Stay</a></li>
+        <li><a href="#produce">What we produce</a></li>
+        <li><a href="#photos">Photos</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ===================== FIXED HERO ===================== -->
+<a id="top"></a>
+<div class="hero-fixed">
+  <div class="hero-inner">
+    <h1>Steinhaus Farm</h1>
+    <p class="hero-sub">Mecklenburg, New York</p>
+  </div>
+</div>
+<div class="scroll-hint">Scroll</div>
+
+<!-- ===================== CONTENT SHEET ===================== -->
+<div class="page">
+
+  <!-- welcome -->
+  <section class="welcome">
+    <div class="wrap reveal">
+      <p class="eyebrow">Welcome</p>
+      <p class="pron">Steinhaus &nbsp;[ˈʃtaɪ̯nhaʊ̯s]&nbsp; · &nbsp;<b>Stone House</b></p>
+      <p class="lede">We here at Steinhaus Farm — Stone House Farm — love to grow, produce, and share simple, clean food. We also like to build with stone.</p>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- who we are -->
+  <section id="who">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Who we are</p>
+      </div>
+
+      <div class="who-intro reveal">
+        <div>
+          <p>We here at Steinhaus Farm — Stone House Farm — love to grow, produce, and share simple, clean food. We also like to build with stone.</p>
+          <p>We (Henry and Grit) found each other in the Finger Lakes and started a small family and farm. Our house and sugar shack are built by hand out of field stone.</p>
+        </div>
+        <figure class="frame">
+          <img src="familie.jpg" alt="Henry, Grit and their two children" loading="lazy" />
+          <figcaption>photo credit · Sara Tro Photography</figcaption>
+        </figure>
+      </div>
+
+      <div class="people">
+        <article class="person reveal">
+          <img src="henry.jpg" alt="Henry" loading="lazy" />
+          <h3>Henry</h3>
+          <p class="role">Builder of all Things, Sugar Master &amp; Vegetable Whisperer</p>
+          <p>He is an American vagabond, who hopped trains all around the country, and learned to farm in Nebraska and the Finger Lakes. He loves to build things out of stone and wood, he is very passionate about growing clean food, and producing maple syrup.</p>
+        </article>
+        <article class="person reveal">
+          <img src="grit.jpg" alt="Grit" loading="lazy" />
+          <h3>Grit</h3>
+          <p class="role">Creature Management &amp; Response Team</p>
+          <p>She is a German language teacher with an interest in life science. She has fond childhood memories of her grandparents, who lived in the country. She loves to manage the sheep, and handle the paperwork.</p>
+        </article>
+        <article class="person reveal">
+          <img src="kids.jpg" alt="The children" loading="lazy" />
+          <h3>The Children</h3>
+          <p class="role">Good Mood Committee &amp; Future Farm Hands</p>
+          <p>Our children and their future are one of our biggest motivations to do what we do.</p>
+        </article>
+        <article class="person reveal">
+          <img src="schnecke.jpg" alt="Schnecke the dog" loading="lazy" />
+          <h3>Schnecke</h3>
+          <p class="role">Security Detail &amp; Eater of All Things</p>
+          <p>She is a rescued Cattle Dog – Catahoula mix, who takes her job very seriously, sometimes too seriously…</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- stay -->
+  <section id="stay" style="background:var(--bg-alt);">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Stay with us</p>
+      </div>
+      <div class="stay-grid reveal">
+        <figure class="frame" style="margin:0;">
+          <img src="haus.jpg" alt="Steinhaus, the stone house, at dusk with the windows glowing" loading="lazy" />
+          <figcaption>Steinhaus · Mecklenburg, New York</figcaption>
+        </figure>
+        <div>
+          <p style="font-size:1.12rem; margin:0 0 1.4rem;">A German teacher and an American vagabond built this stone house by hand in the Finger Lakes. Scandinavian modern loft meets working homestead — radiant floors, high ceilings, amazing sunsets over Smith Valley. Taste our homemade maple syrup, meet the sheep, and unplug in a place unlike anywhere else. Perfectly located between Ithaca and Watkins Glen.</p>
+          <a class="btn" href="https://www.airbnb.com/h/steinhausfarm" target="_blank" rel="noopener">Check dates on Airbnb</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- what we produce -->
+  <section id="produce">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">What we produce</p>
+        <p>We at Steinhaus Farm have a passion for lasting quality — old traditions mixed with new ideas.</p>
+      </div>
+
+      <article class="product reveal">
+        <div class="p-media"><img src="maple.jpg" alt="Steinhaus maple syrup in three sizes" loading="lazy" /></div>
+        <div>
+          <h3>Maple Syrup</h3>
+          <p>We make our maple syrup by hand, in small batches, following old traditions mixed with new ideas.</p>
+          <div class="price"><span><b>32 oz</b> tins — heavy users</span><span><b>16 oz</b> bottles — average user</span><span><b>8.5 oz</b> swing-top gift bottles</span></div>
+          <p class="buy">How to buy</p>
+          <ul class="buy-list">
+            <li>Find our syrup at the <a href="https://greenstar.coop/" target="_blank" rel="noopener">GreenStar Food Co+op</a></li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="product flip reveal">
+        <div class="p-media"><img src="tomatos.jpg" alt="Heirloom tomatoes" loading="lazy" /></div>
+        <div>
+          <h3>Vegetables</h3>
+          <p>We are very excited to be growing vegetables for market. You can already find some of our veggies once in a while at the GreenStar DeWitt Food Co+op.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- testimonials -->
+  <section>
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">From our customers</p>
+      </div>
+      <div class="quotes">
+        <blockquote class="reveal"><p>“We have been using your maple syrup with pancakes, French toast and other desserts and the taste is amazing! It is so nice to have delicious and environmentally friendly products like this. We will keep ordering!”</p><cite>Yumi · Connecticut · July 2020</cite></blockquote>
+        <blockquote class="reveal"><p>“We live in Texas and have nothing even remotely close to Steinhaus syrup in our stores. Thank you for producing such an excellent product!”</p><cite>Joseph · Texas · May 2020</cite></blockquote>
+        <blockquote class="reveal"><p>“Had a super time visiting today, and brought home the most delicious maple syrup!”</p><cite>Carolyn Pover · March 2020</cite></blockquote>
+        <blockquote class="reveal"><p>“I am a fifth generation Upstate New Yorker who has been eating maple syrup all my life. I found Steinhaus Farm syrup superior to all the others I have tried. It is far and away the best maple syrup I have ever tasted!”</p><cite>Peter B · April 2019</cite></blockquote>
+      </div>
+    </div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- photos / instagram -->
+  <section id="photos">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <p class="eyebrow">Photos</p>
+        <p>The latest from our Instagram, @steinhausfarm.</p>
+      </div>
+      <div class="ig-slot reveal">
+        <!-- BEGIN INSTAGRAM EMBED -->
+        <p class="mark">Live Instagram feed</p>
+        <p>Once we connect a feed widget, your latest @steinhausfarm posts will appear right here and refresh automatically whenever you post. For now, the button takes visitors straight to Instagram.</p>
+        <!-- END INSTAGRAM EMBED -->
+        <a class="btn" href="https://www.instagram.com/steinhausfarm/" target="_blank" rel="noopener">Follow on Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- contact -->
+  <section id="contact">
+    <div class="wrap reveal">
+      <p class="eyebrow">Contact us</p>
+      <h2>We would love to hear from you.</h2>
+      <div class="contact-card">
+        <span class="name">Grit &amp; Henry Phelps</span>
+        Steinhaus Farm<br>
+        Mecklenburg, New York<br>
+        <!-- EMAIL: the address is assembled by the script at the bottom of the page so
+             spam bots can't read it. To change it, edit the user/domain parts in that script. -->
+        <a id="email-link" href="#">email us</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <span>© 2026 Steinhaus Farm · Mecklenburg, New York · Text &amp; photos under <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></span>
+      <span><a href="#stay">Stay at the Steinhaus</a> · <a href="https://www.instagram.com/steinhausfarm/" target="_blank" rel="noopener">@steinhausfarm</a></span>
+    </div>
+  </footer>
+
+</div><!-- /.page -->
+
+<script>
+const btn = document.querySelector('.menu-btn');
+const nav = document.getElementById('nav');
+btn.addEventListener('click', () => { const open = nav.classList.toggle('open'); btn.setAttribute('aria-expanded', open); });
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { nav.classList.remove('open'); btn.setAttribute('aria-expanded', false); }));
+
+// hide the scroll hint once the user starts scrolling
+const hint = document.querySelector('.scroll-hint');
+window.addEventListener('scroll', () => { if (window.scrollY > 40 && hint) hint.style.opacity = '0'; }, { passive:true });
+
+const io = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold:0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ---- Email, assembled from parts so spam bots can't scrape it ----
+// To change the address, edit the two lines below (user and domain).
+(function(){
+  const user = 'us';
+  const domain = 'steinhausfarm.com';
+  const addr = user + '@' + domain;
+  const link = document.getElementById('email-link');
+  if (link){
+    link.href = 'mailto:' + addr;
+    link.textContent = addr;
+  }
+})();
+</script>
+</body>
+</html>
